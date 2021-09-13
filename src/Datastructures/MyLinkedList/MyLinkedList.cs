@@ -13,8 +13,12 @@
 
         public void AddFirst(T data)
         {
-            // Write implementation here
-            throw new System.NotImplementedException();
+            first = new MyLinkedListNode<T>()
+            {
+                data = data,
+                next = first
+            };
+            size++;
         }
 
         public T GetFirst()

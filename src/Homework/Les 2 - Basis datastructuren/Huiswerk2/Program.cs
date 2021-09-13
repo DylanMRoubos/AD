@@ -149,7 +149,7 @@
 
         static void Main(string[] args)
         {
-            //Ex1ArrayList();
+            Ex1ArrayList();
             //Ex2LinkedList();
             //Ex3Stack();
             //Ex4BracketChecker();
