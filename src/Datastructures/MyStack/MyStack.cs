@@ -1,25 +1,37 @@
+using System;
+
 namespace AD
 {
     public partial class MyStack<T> : IMyStack<T>
     {
+        public MyLinkedList<T> stack = new MyLinkedList<T>();
+
         public bool IsEmpty()
         {
-            throw new System.NotImplementedException();
+            if(stack.Size() == 0)
+            {
+                return true;
+            }
+            return false;
         }
 
         public T Pop()
         {
-            throw new System.NotImplementedException();
+            if (stack.Size() == 0) throw new MyStackEmptyException();
+            var item = stack.GetFirst();
+            stack.RemoveFirst();
+            return item;
         }
 
         public void Push(T data)
-        {
-            throw new System.NotImplementedException();
+        {            
+            stack.AddFirst(data);
         }
 
         public T Top()
         {
-            throw new System.NotImplementedException();
+            if (stack.Size() == 0) throw new MyStackEmptyException();
+            return stack.GetFirst();
         }
     }
 }

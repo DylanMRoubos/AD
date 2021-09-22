@@ -18,7 +18,18 @@ namespace AD
         /// Returns False otherwise.</returns>
         public static bool CheckBrackets(string s)
         {
-            throw new System.NotImplementedException();
+            int depth = 0;
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (depth == 0 && s[0] == ')') return false;
+                if (depth < 0) return false;
+                if (s[i] == '(') depth++;
+                if (s[i] == ')') depth--;
+            }
+            if (depth == 0) return true;
+            return false;
+
         }
 
 
@@ -37,7 +48,51 @@ namespace AD
         /// Returns False otherwise.</returns>
         public static bool CheckBrackets2(string s)
         {
-            throw new System.NotImplementedException();
+            MyStack<char> stack = new MyStack<char>();
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] == '{' || s[i] == '[' || s[i] == '(')
+                {
+                    stack.Push(s[i]);
+                }
+                else
+                {
+                    switch(stack.Pop())
+                    {
+                        case '{':
+                            if(s[i] != '}')
+                            {
+                                return false;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        case '(':
+                            if (s[i] != ')')
+                            {
+                                return false;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        case '[':
+                            if (s[i] != ']')
+                            {
+                                return false;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                    }
+                }
+            }
+            if (stack.IsEmpty()) return true;
+            return false;
+
         }
 
     }
