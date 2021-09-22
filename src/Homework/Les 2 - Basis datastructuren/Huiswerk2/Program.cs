@@ -19,7 +19,7 @@
             }
             catch (MyArrayListIndexOutOfRangeException e)
             {
-                System.Console.WriteLine(e.Message);
+                System.Console.WriteLine("Exception (zoals verwacht): {0}", e.Message);
             }
             al.Set(2, 4);
             System.Console.WriteLine(al);
@@ -101,7 +101,7 @@
             }
             catch (MyStackEmptyException e)
             {
-                System.Console.WriteLine(e.Message);
+                System.Console.WriteLine("Exception (zoals verwacht): {0}", e.Message);
             }
         }
 
@@ -142,7 +142,7 @@
             }
             catch (MyQueueEmptyException e)
             {
-                System.Console.WriteLine(e.Message);
+                System.Console.WriteLine("Exception (zoals verwacht): {0}", e.Message);
             }
         }
 
