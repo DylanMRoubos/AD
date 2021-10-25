@@ -20,17 +20,89 @@ namespace AD
         //----------------------------------------------------------------------
         public T GetData()
         {
-            throw new System.NotImplementedException();
+            return data;
         }
 
         public BinaryNode<T> GetLeft()
         {
-            throw new System.NotImplementedException();
+            return left;
         }
 
         public BinaryNode<T> GetRight()
         {
-            throw new System.NotImplementedException();
+            return right;
+        }
+
+        public int SizeRecursive(BinaryNode<T> data)
+        {
+            if (data == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return 1 + SizeRecursive(data.left) + SizeRecursive(data.right);
+            }
+        }
+
+        public string PrefixRec(BinaryNode<T> data)
+        {
+            if(data == null)
+            {
+                return "NIL";
+            }
+            return "[ " + data.data.ToString() + " " + PrefixRec(data.left) + " " + PrefixRec(data.right) + " ]";
+        }
+        public string InfixRec(BinaryNode<T> data)
+        {
+            if (data == null)
+            {
+                return "NIL";
+            }
+            return "[ " + InfixRec(data.left) + " " + data.data.ToString() + " " + InfixRec(data.right) + " ]";
+        }
+
+        public string PostfixRec(BinaryNode<T> data)
+        {
+            if (data == null)
+            {
+                return "NIL";
+            }
+            return "[ " + PostfixRec(data.left) + " " + PostfixRec(data.right) + " " + data.data.ToString() + " ]";
+        }
+
+        public int LeavesRec(BinaryNode<T> data) 
+        {
+                if(data == null) {
+                    return 0;
+                }
+                if(data.left == null && data.right == null) {
+                    return 1;
+                }
+                return LeavesRec(data.left) + LeavesRec(data.right);
+        }
+
+        public int OneChildRec(BinaryNode<T> data) 
+        {
+                if(data == null) {
+                    return 0;
+                }
+                if((data.left == null && data.right != null) || data.left != null && data.right == null) {
+                    return 1;
+                }
+                return OneChildRec(data.left) + OneChildRec(data.right);
+        }
+        public int TwoChildRec(BinaryNode<T> data)
+        {
+                if(data == null) 
+                {
+                    return 0;
+                }
+                if(data.left != null && data.right != null) 
+                {
+                    return 1 + TwoChildRec(data.left) + TwoChildRec(data.right);
+                }
+                return TwoChildRec(data.left) + TwoChildRec(data.right);
         }
     }
 }

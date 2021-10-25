@@ -17,7 +17,7 @@ namespace AD
 
         public Graph()
         {
-            throw new System.NotImplementedException();
+            vertexMap = new Dictionary<string, Vertex>();
         }
 
 
@@ -32,7 +32,11 @@ namespace AD
         /// <param name="name">The name of the new vertex</param>
         public void AddVertex(string name)
         {
-            throw new System.NotImplementedException();
+            //Check if vertext already exists in dictionary
+            if (!vertexMap.ContainsKey(name))
+            {
+                vertexMap.TryAdd(name, new Vertex(name));
+            }
         }
 
 
@@ -44,7 +48,15 @@ namespace AD
         /// <returns>The vertex withe the given name</returns>
         public Vertex GetVertex(string name)
         {
-            throw new System.NotImplementedException();
+            if (!vertexMap.ContainsKey(name))
+            {
+                AddVertex(name);
+                return vertexMap.GetValueOrDefault(name);
+            }
+            else
+            {
+                return vertexMap.GetValueOrDefault(name);
+            }
         }
 
 
@@ -58,7 +70,20 @@ namespace AD
         /// <param name="cost">cost of the edge</param>
         public void AddEdge(string source, string dest, double cost = 1)
         {
-            throw new System.NotImplementedException();
+            //check if source exists
+            if (!vertexMap.ContainsKey(source))
+            {
+                AddVertex(source);
+            }
+            //check if dest exist
+            if (!vertexMap.ContainsKey(dest))
+            {
+                AddVertex(dest);
+            }
+            //add line from source -> dest
+            vertexMap.GetValueOrDefault(source).adj.AddLast(new Edge(vertexMap.GetValueOrDefault(dest), cost));
+            //add line from dest -> source -> I dunno if this should be implemented 🤷🏽‍♂️
+
         }
 
 
@@ -68,7 +93,10 @@ namespace AD
         /// </summary>
         public void ClearAll()
         {
-            throw new System.NotImplementedException();
+            foreach (var vertex in vertexMap)
+            {
+                vertex.Value.Reset();
+            }
         }
 
         /// <summary>
@@ -77,7 +105,32 @@ namespace AD
         /// <param name="name">The name of the starting vertex</param>
         public void Unweighted(string name)
         {
-            throw new System.NotImplementedException();
+            Queue<Vertex> vQueue = new Queue<Vertex>();
+
+            foreach (var vertex in vertexMap)
+            {
+                vertex.Value.distance = System.Double.MaxValue;
+            }
+
+            vertexMap.GetValueOrDefault(name).distance = 0;
+
+            vQueue.Enqueue(vertexMap.GetValueOrDefault(name));
+
+            while (vQueue.Count != 0)
+            {
+                Vertex v = vQueue.Dequeue();
+                //loop through all the available edges in the vertex
+                foreach (Edge e in v.adj)
+                {
+                    if (e.dest.distance == System.Double.MaxValue)
+                    {
+                        e.dest.distance = v.distance + 1;
+                        e.dest.prev = v;
+                        vQueue.Enqueue(e.dest);
+                    }
+                }
+            }
+
         }
 
         /// <summary>
@@ -86,7 +139,42 @@ namespace AD
         /// <param name="name">The name of the starting vertex</param>
         public void Dijkstra(string name)
         {
-            throw new System.NotImplementedException();
+            PriorityQueue<Vertex> pvQueue = new PriorityQueue<Vertex>();
+
+            foreach (var vertex in vertexMap)
+            {
+                vertex.Value.distance = System.Double.MaxValue;
+                vertex.Value.prev = null;
+                vertex.Value.known = false;
+            }
+
+            vertexMap.GetValueOrDefault(name).distance = 0;
+
+            pvQueue.Add(vertexMap.GetValueOrDefault(name));
+
+            while (pvQueue.Size() > 0)
+            {
+                Vertex v = pvQueue.Remove();
+
+                v.known = true;
+
+                foreach (Edge e in v.adj)
+                {
+                    Vertex w = e.dest;
+
+                    if (w.known == false)
+                    {
+                        if (v.distance + e.cost < w.distance)
+                        {
+                            w.distance = v.distance + e.cost;
+                            w.prev = v;
+                        }
+                        pvQueue.Add(w);
+                    }
+                }
+            }
+
+
         }
 
         //----------------------------------------------------------------------
@@ -101,7 +189,15 @@ namespace AD
         /// <returns>The string representation of this Graph instance</returns>
         public override string ToString()
         {
-            throw new System.NotImplementedException();
+
+            string text = "";
+
+            foreach (string key in vertexMap.Keys.OrderBy(x => x))
+            {
+                text += $"{vertexMap.GetValueOrDefault(key)} \n";
+            }
+
+            return text;
         }
 
 

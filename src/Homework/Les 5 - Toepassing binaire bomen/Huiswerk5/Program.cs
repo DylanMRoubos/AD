@@ -18,7 +18,7 @@
             bst.Insert(7);
             System.Console.WriteLine(bst.ToInfixString());
             System.Console.WriteLine(bst);
-            bst.Remove(6);
+            //bst.Remove(6);
 
             System.Console.WriteLine();
 
@@ -57,7 +57,7 @@
         static void Main(string[] args)
         {
             Opgave1();
-            Opgave2();
+            //Opgave2();
         }
     }
 }

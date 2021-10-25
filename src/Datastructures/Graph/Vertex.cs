@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 
 namespace AD
 {
-    public partial class Vertex : IVertex
+    public partial class Vertex : IVertex, IComparable<Vertex>
     {
         public string name;
         public LinkedList<Edge> adj;
@@ -24,7 +25,9 @@ namespace AD
         /// <param name="name">The name of the new vertex</param>
         public Vertex(string name)
         {
-            throw new System.NotImplementedException();
+            adj = new LinkedList<Edge>();
+            this.name = name;
+            this.distance = System.Double.MaxValue;
         }
 
 
@@ -34,31 +37,35 @@ namespace AD
 
         public string GetName()
         {
-            throw new System.NotImplementedException();
+            return name;
         }
         public LinkedList<Edge> GetAdjacents()
         {
-            throw new System.NotImplementedException();
+            return adj;
         }
 
         public double GetDistance()
         {
-            throw new System.NotImplementedException();
+            return distance;
         }
 
         public Vertex GetPrevious()
         {
-            throw new System.NotImplementedException();
+            return prev;
         }
 
         public bool GetKnown()
         {
-            throw new System.NotImplementedException();
+            return known;
         }
 
         public void Reset()
         {
-            throw new System.NotImplementedException();
+            name = "";
+            adj = null; ;
+            distance = System.Double.MaxValue;
+            prev = null;
+            known = false;
         }
 
 
@@ -75,7 +82,35 @@ namespace AD
         /// <returns>The string representation of this Graph instance</returns> 
         public override string ToString()
         {
-            throw new System.NotImplementedException();
+            string text = "";
+            //Add name
+            text += $"{name} ";
+            //Add the distance if available
+            if (distance != System.Double.MaxValue) { text += $"({distance})"; }
+            text += "[";
+            if (adj != null)
+            {
+                foreach (Edge e in adj.OrderBy(x => x.dest.name))
+                {
+                    text += $"{e.dest.name}({e.cost})";
+                }
+            }
+            text += "]";
+
+            return text;
+        }
+        //TODO: Implement this method -> is this correct 🤔
+        public int CompareTo([AllowNull] Vertex other)
+        {
+            if(distance == other.distance)
+            {
+                return 0;
+            }
+            else if(distance > other.distance)
+            {
+                return 1;
+            }
+            return -1;
         }
     }
 }

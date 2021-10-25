@@ -10,12 +10,12 @@ namespace AD
 
         public BinaryTree()
         {
-            throw new System.NotImplementedException();
+            root = null;
         }
 
         public BinaryTree(T rootItem)
         {
-            throw new System.NotImplementedException();
+            root = new BinaryNode<T>(rootItem, null, null);
         }
 
 
@@ -25,47 +25,100 @@ namespace AD
 
         public BinaryNode<T> GetRoot()
         {
-            throw new System.NotImplementedException();
+            return root;
         }
 
         public int Size()
         {
-            throw new System.NotImplementedException();
+            if (root == null)
+            {
+                return 0;
+            }
+            return root.SizeRecursive(root);
+
         }
 
         public int Height()
         {
-            throw new System.NotImplementedException();
+            return HeightRecursive(root);
+        }
+
+        public int HeightRecursive(BinaryNode<T> root)
+        {
+            int lh;
+            int rh;
+
+            if (root == null)
+            {
+                return -1;
+            }
+            else
+            {
+                lh = HeightRecursive(root.left);
+                rh = HeightRecursive(root.right);
+                if (lh > rh) return 1 + lh;
+                else return 1 + rh;
+            }
         }
 
         public void MakeEmpty()
         {
-            throw new System.NotImplementedException();
+            root = null;
         }
 
         public bool IsEmpty()
         {
-            throw new System.NotImplementedException();
+            return root == null;
         }
 
         public void Merge(T rootItem, BinaryTree<T> t1, BinaryTree<T> t2)
         {
-            throw new System.NotImplementedException();
+
+            if (t1.root == t2.root && t1.root != null)
+            {
+                throw new System.Exception();
+            }
+
+            root = new BinaryNode<T>(rootItem, t1.root, t2.root);
+
+            if (this != t1)
+            {
+                t1.root = null;
+            }
+            if (this != t2)
+            {
+                t2.root = null;
+            }
         }
 
         public string ToPrefixString()
         {
-            throw new System.NotImplementedException();
+            if (root == null)
+            {
+                return "NIL";
+            }
+            else
+            {
+                return root.PrefixRec(root);
+            }
         }
 
         public string ToInfixString()
         {
-            throw new System.NotImplementedException();
+            if (root == null)
+            {
+                return "NIL";
+            }
+            return root.InfixRec(root);
         }
 
         public string ToPostfixString()
         {
-            throw new System.NotImplementedException();
+            if (root == null)
+            {
+                return "NIL";
+            }
+            return root.PostfixRec(root);
         }
 
 
@@ -75,17 +128,29 @@ namespace AD
 
         public int NumberOfLeaves()
         {
-            throw new System.NotImplementedException();
+            if (root == null)
+            {
+                return 0;
+            }
+            return root.LeavesRec(root);
         }
 
         public int NumberOfNodesWithOneChild()
         {
-            throw new System.NotImplementedException();
+            if (root == null)
+            {
+                return 0;
+            }
+            return root.OneChildRec(root);
         }
 
         public int NumberOfNodesWithTwoChildren()
         {
-            throw new System.NotImplementedException();
+            if (root == null)
+            {
+                return 0;
+            }
+            return root.TwoChildRec(root);
         }
     }
 }

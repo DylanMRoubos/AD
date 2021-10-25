@@ -4,7 +4,16 @@
     {
         public static int Enen(int n)
         {
-            throw new System.NotImplementedException();
+            if (n == 1 || n == 0)
+            {
+                return n;
+            }
+
+            if (n % 2 != 0)
+            {
+                return 1 + Enen(n / 2);
+            }
+            return Enen(n / 2);
         }
 
         public static void Run()

@@ -7,7 +7,10 @@ namespace AD
     {
         public override void Sort(List<int> list)
         {
-            throw new System.NotImplementedException();
+            if(list.Count <= 1)
+            {
+                return;
+            }
         }
 
     }

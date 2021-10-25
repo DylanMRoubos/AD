@@ -55,43 +55,30 @@ namespace AD
 
         public void Insert(int index, T data)
         {
-            if (first == null) throw new MyLinkedListEmptyException();
-
             if (index < 0 || index > size) throw new MyLinkedListIndexOutOfRangeException();
 
-            MyLinkedListNode<T> prev = null;
-            MyLinkedListNode<T> next = first;
-            for (int i = 0; i < size; i++)
-            {
-                if (index == i)
-                {
-                    if (next == null)
-                    {
-                        first = new MyLinkedListNode<T>
-                        {
-                            data = data,
-                        };
-                        size++;
-                        return;
-                    }
-                    else
-                    {
-                        prev.next = new MyLinkedListNode<T>
-                        {
-                            data = data,
-                            next = next
-                        };
-                        size++;
-                        return;
+            size++;
 
-                    }
-                }
-                if (next.next != null)
-                {
-                    prev = next;
-                    next = next.next;
-                }
+            MyLinkedListNode<T> newNode = new MyLinkedListNode<T>()
+            {
+                data = data,
+            };
+
+            if (index == 0)
+            {
+                newNode.next = first;
+                first = newNode;
+                return;
             }
+            var currentNode = first;
+
+            for (int i = 0; i < index - 1; i++)
+            {
+                currentNode = currentNode.next;
+            }
+            newNode.next = currentNode.next;
+            currentNode.next = newNode;
+
         }
 
         public override string ToString()

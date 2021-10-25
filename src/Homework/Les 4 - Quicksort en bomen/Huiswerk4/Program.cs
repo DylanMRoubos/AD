@@ -30,22 +30,22 @@
             IFirstChildNextSibling<string> tree;
 
             // Empty tree
-            tree = DSBuilder.CreateFirstChildNextSibling_Empty();
-            tree.PrintPreOrder();
-            System.Console.WriteLine("Size: {0}", tree.Size());
-            System.Console.WriteLine(tree);
+            //tree = DSBuilder.CreateFirstChildNextSibling_Empty();
+            //tree.PrintPreOrder();
+            //System.Console.WriteLine("Size: {0}", tree.Size());
+            //System.Console.WriteLine(tree);
 
             // Small tree
             tree = DSBuilder.CreateFirstChildNextSibling_Small();
-            tree.PrintPreOrder();
-            System.Console.WriteLine("Size: {0}", tree.Size());
+            //tree.PrintPreOrder();
+            //System.Console.WriteLine("Size: {0}", tree.Size());
             System.Console.WriteLine(tree);
 
             // Tree from figure 18.3
-            tree = DSBuilder.CreateFirstChildNextSibling_18_3();
-            tree.PrintPreOrder();
-            System.Console.WriteLine("Size: {0}", tree.Size());
-            System.Console.WriteLine(tree);
+            //tree = DSBuilder.CreateFirstChildNextSibling_18_3();
+            //tree.PrintPreOrder();
+            //System.Console.WriteLine("Size: {0}", tree.Size());
+            //System.Console.WriteLine(tree);
         }
 
         static void Opgave3()
@@ -57,28 +57,28 @@
 
             // Empty tree
             intTree = DSBuilder.CreateBinaryTreeEmpty();
-            System.Console.WriteLine(intTree.Size());
-            System.Console.WriteLine(intTree.Height());
-            System.Console.WriteLine(intTree.ToPrefixString());
-            System.Console.WriteLine(intTree.ToInfixString());
-            System.Console.WriteLine(intTree.ToPostfixString());
+            //System.Console.WriteLine(intTree.Size());
+            //System.Console.WriteLine(intTree.Height());
+            //System.Console.WriteLine(intTree.ToPrefixString());
+            //System.Console.WriteLine(intTree.ToInfixString());
+            //System.Console.WriteLine(intTree.ToPostfixString());
 
             // Int tree
             intTree = DSBuilder.CreateBinaryTreeInt();
-            System.Console.WriteLine(intTree.Size());
-            System.Console.WriteLine(intTree.Height());
-            System.Console.WriteLine(intTree.ToPrefixString());
-            System.Console.WriteLine(intTree.ToInfixString());
+            //System.Console.WriteLine(intTree.Size());
+            //System.Console.WriteLine(intTree.Height());
+            //System.Console.WriteLine(intTree.ToPrefixString());
+            //System.Console.WriteLine(intTree.ToInfixString());
             System.Console.WriteLine(intTree.ToPostfixString());
-            System.Console.WriteLine(intTree.NumberOfNodesWithOneChild());
+            //System.Console.WriteLine(intTree.NumberOfNodesWithOneChild());
 
             // String tree
-            stringTree = DSBuilder.CreateBinaryTreeString();
-            System.Console.WriteLine(stringTree.Size());
-            System.Console.WriteLine(stringTree.Height());
-            System.Console.WriteLine(stringTree.ToPrefixString());
-            System.Console.WriteLine(stringTree.ToInfixString());
-            System.Console.WriteLine(stringTree.ToPostfixString());
+            //stringTree = DSBuilder.CreateBinaryTreeString();
+            //System.Console.WriteLine(stringTree.Size());
+            //System.Console.WriteLine(stringTree.Height());
+            //System.Console.WriteLine(stringTree.ToPrefixString());
+            //System.Console.WriteLine(stringTree.ToInfixString());
+            //System.Console.WriteLine(stringTree.ToPostfixString());
         }
 
         static void Opgave4()
@@ -109,10 +109,10 @@
 
         static void Main(string[] args)
         {
-            Opgave1();
-            Opgave2();
+            //Opgave1();
+            //Opgave2();
             Opgave3();
-            Opgave4();
+            //Opgave4();
         }
     }
 }
