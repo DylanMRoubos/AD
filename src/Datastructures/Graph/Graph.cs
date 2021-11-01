@@ -149,7 +149,6 @@ namespace AD
             }
 
             vertexMap.GetValueOrDefault(name).distance = 0;
-
             pvQueue.Add(vertexMap.GetValueOrDefault(name));
 
             while (pvQueue.Size() > 0)
@@ -173,8 +172,6 @@ namespace AD
                     }
                 }
             }
-
-
         }
 
         //----------------------------------------------------------------------
